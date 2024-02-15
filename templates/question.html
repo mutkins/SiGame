@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Table template</title>
+    <link href="/static/styles.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+  <form method="post" action="/" id="myForm">
+  <input type="hidden" name="id" value={{ question.id }}/>
+  <button class="hidden-button"></button>
+  </form>
+  <div class="question_block">
+    <p>{{ question.name }}</p>
+  </div>
+
+
+  </body>
+</html>
