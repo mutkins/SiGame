@@ -3,11 +3,11 @@
 		"round_num": 1,
 		"themes": [
 			{
-				"name": "Первая тема",
+				"name": "Циферки",
 				"questions": [
 					{
 						"rate": 100,
-						"name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum?",
+						"name": "",
 						"answer": "1799"
 					},
 					{
@@ -17,13 +17,13 @@
 					},
 					{
 						"rate": 300,
-						"name": "В каком году родился Ленин?",
-						"answer": "1877"
+						"name": "В каком городе проживает больше всего сотрудников Логики бизнеса?",
+						"answer": "Москва"
 					},
 					{
 						"rate": 400,
-						"name": "В каком году родился я?",
-						"answer": "1990"
+						"name": "Логика бизнеса состоит из множества подразделений, например, служба управления персоналом, служба автоматизации, центр тестирования, центр документирования, финансовая служба. А в каком подразделении работает больше всего человек?",
+						"answer": "Отдел технической поддержки"
 					},
 					{
 						"rate": 500,
@@ -33,7 +33,7 @@
 				]
 			},
 			{
-				"name": "Вторая тема",
+				"name": "Города",
 				"questions": [
 					{
 						"rate": 100,
@@ -52,13 +52,13 @@
 					},
 					{
 						"rate": 400,
-						"name": "В каком году умер я?",
-						"answer": "1990"
+						"name": "Это самый восточный город проживания сотрудников Логики Бизнеса. Время в нем отличается от московского на 7 часов. А еще этот город размещен на купюре в 5000 рублей",
+						"answer": "Хабаровск"
 					},
 					{
 						"rate": 500,
-						"name": "В каком году умер ты?",
-						"answer": "1991"
+						"name": "Этот молодой город в калужской области создавался как наукоград. И именно здесь 26 июня 1954 года заработала первая в мире атомная электростанция",
+						"answer": "Обнинск"
 					}
 				]
 			},

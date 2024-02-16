@@ -7,10 +7,24 @@
     <link href="/static/styles.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-  <form method="post" action="/" id="myForm">
-  <input type="hidden" name="id" value={{ question.id }}/>
-  <button class="hidden-button"></button>
-  </form>
+<!--  <form method="post" action="/" id="myForm">-->
+<!--  <input type="hidden" name="id" value={{ question.id }}/>-->
+<!--  <button class="hidden-button"></button>-->
+<!--  </form>-->
+<div class="button-block left-block">
+  <p class="team-name">Свежезамурованные бегемотики</p>
+   <div class="buttons-wrapper"><button class="plus-minus-button">- {{ question.rate }} </button><button class="plus-minus-button">+ {{ question.rate }}</button></div>
+</div>
+<div class="button-block center-block">
+  <p class="team-name"></p>
+   <div class="buttons-wrapper"><button class="next-button">▶</button></div>
+</div>
+<div class="button-block right-block">
+  <p class="team-name">Правая команда</p>
+   <div class="buttons-wrapper"><button class="plus-minus-button">- {{ question.rate }}</button><button class="plus-minus-button">+ {{ question.rate }}</button></div>
+</div>
+
+
   <div class="question_block">
     <p>{{ question.name }}</p>
   </div>
