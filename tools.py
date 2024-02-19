@@ -13,7 +13,7 @@ def configure_questions(pack):
     for round in pack:
         for theme in round.get("themes"):
             for question in theme.get("questions"):
-                question["id"] = random.randint(0, 100000)
+                question["id"] = random.randint(0, 1000000)
                 question["answered"] = False
     return pack
 

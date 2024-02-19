@@ -6,22 +6,90 @@
     <title>Table template</title>
     <link href="/static/styles.css" rel="stylesheet" type="text/css">
   </head>
+
   <body>
-<!--  <form method="post" action="/" id="myForm">-->
-<!--  <input type="hidden" name="id" value={{ question.id }}/>-->
-<!--  <button class="hidden-button"></button>-->
-<!--  </form>-->
+    <script>
+function wrong_answer(a) {
+
+if (a==1){
+document.getElementById("first_team_minus").style.display = "none";
+document.getElementById("first_team_plus").style.display = "none";
+document.getElementById("first_team_wrong").style.display = "block";
+
+const node = Object.assign(document.createElement('input'), {
+  type: "hidden",
+  name: "team1",
+  value: "-{{ question.rate }}"
+});
+document.getElementById("myForm").appendChild(node)
+
+}
+else {
+document.getElementById("second_team_minus").style.display = "none";
+document.getElementById("second_team_plus").style.display = "none";
+document.getElementById("second_team_wrong").style.display = "block";
+const node = Object.assign(document.createElement('input'), {
+  type: "hidden",
+  name: "team2",
+  value: "-{{ question.rate }}"
+});
+document.getElementById("myForm").appendChild(node)
+}
+}
+
+function right_answer(a) {
+
+if (a==1){
+document.getElementById("first_team_minus").style.display = "none";
+document.getElementById("first_team_plus").style.display = "none";
+document.getElementById("first_team_right").style.display = "block";
+const node = Object.assign(document.createElement('input'), {
+  type: "hidden",
+  name: "team2",
+  value: "+{{ question.rate }}"
+});
+document.getElementById("myForm").appendChild(node)
+}
+else {
+document.getElementById("second_team_minus").style.display = "none";
+document.getElementById("second_team_plus").style.display = "none";
+document.getElementById("second_team_right").style.display = "block";
+const node = Object.assign(document.createElement('input'), {
+  type: "hidden",
+  name: "team2",
+  value: "+{{ question.rate }}"
+});
+document.getElementById("myForm").appendChild(node)
+}
+
+}
+</script>
+<form method="post" action="/" id="myForm">
+    <input type="hidden" name="id" value={{ question.id }}/>
+</form>
 <div class="button-block left-block">
-  <p class="team-name">Свежезамурованные бегемотики</p>
-   <div class="buttons-wrapper"><button class="plus-minus-button">- {{ question.rate }} </button><button class="plus-minus-button">+ {{ question.rate }}</button></div>
+  <p class="team-name">Свежезамуроdfyyst tttgfjss </p>
+      <p id="first_team_wrong" class="question_result wrong-color">- {{ question.rate }}</p>
+      <p id="first_team_right" class="question_result right-color">+ {{ question.rate }}</p>
+  <div class="buttons-wrapper">
+      <button id="first_team_minus" type ="button" class="plus-minus-button" onclick="wrong_answer(1)">- {{ question.rate }} </button><button id="first_team_plus" type ="button" onclick="right_answer(1)" class="plus-minus-button">+ {{ question.rate }}</button>
+    </div>
 </div>
+
 <div class="button-block center-block">
   <p class="team-name"></p>
-   <div class="buttons-wrapper"><button class="next-button">▶</button></div>
+
+   <div class="buttons-wrapper"><input type="hidden" name="id" value={{ question.id }}/><button type ="submit" form="myForm" class="next-button">▶</button></div>
+
 </div>
+
 <div class="button-block right-block">
   <p class="team-name">Правая команда</p>
-   <div class="buttons-wrapper"><button class="plus-minus-button">- {{ question.rate }}</button><button class="plus-minus-button">+ {{ question.rate }}</button></div>
+      <p id="second_team_wrong" class="question_result wrong-color">- {{ question.rate }}</p>
+      <p id="second_team_right" class="question_result right-color">+ {{ question.rate }}</p>
+    <div class="buttons-wrapper">
+      <button type ="button" id="second_team_minus" onclick="wrong_answer(2)" class="plus-minus-button">- {{ question.rate }}</button><button id="second_team_plus" onclick="right_answer(2)" type ="button" class="plus-minus-button">+ {{ question.rate }}</button>
+    </div>
 </div>
 
 

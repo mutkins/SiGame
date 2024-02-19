@@ -109,6 +109,7 @@ margin-bottom:0;
 box-sizing: border-box;
 overflow: hidden;
 
+
 }
 .buttons-wrapper{
   display: block;
@@ -129,4 +130,16 @@ font-size: 15pt;
 
 }
 
+.question_result {
+font-size: 45pt;
+text-align: center;
+display: none;
+margin-top:5px;
+}
+.wrong-color{
+color: red;
+}
+.right-color{
+color: #F5DE92;
+}
 
