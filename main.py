@@ -1,48 +1,53 @@
 import json
-from tools import get_question_by_id, configure_questions, mark_question_as_answered
+from tools import get_question_by_id, configure_questions, mark_question_as_answered, add_score
 from flask import Flask, render_template, request
-from Team import Team
+from Players import Players
 
 app = Flask(__name__)
+
 global pack
 with open('pack.json', 'r', encoding='utf-8') as file:
     pack = json.load(file)
 
 pack = configure_questions(pack)
 
-team1 = Team('ЗУБОЗАВРЫ')
-team2 = Team('ЗАТОЧЕННЫЕ ЗАБРОЗУБЫ')
+player_1 = Players('ЗУБОЗАВРЫ')
+player_2 = Players('ЗАТОЧЕННЫЕ ЗАБРОЗУБЫ')
+players = [player_1, player_2]
 
 
 @app.route('/', methods=['GET'])
 def round_menu():
-    return render_template('regular_round.html', themes=pack[0].get('themes'))
+    global players
+    return render_template('regular_round.html', themes=pack[0].get('themes'), players=players)
 
 
 @app.route('/', methods=['POST'])
 def round_menu1():
     global pack
-    a = request
-    question_id = request.form.get('id').replace('/', '')
+    global players
+    for item in request.form:
+        if item.startswith('id'):
+            question_id = request.form.get(item).replace('/', '')
+        if item.startswith('player'):
+            score = request.form.get(item).replace('/', '')
+            players = add_score(players=players, player_id=item, score=score)
     pack = mark_question_as_answered(pack=pack, question_id=question_id)
-    with open('pack1.json', 'w', encoding='utf-8') as file:
-        file.write(json.dumps(pack))
-    return render_template('regular_round.html', themes=pack[0].get('themes'))
+    return render_template('regular_round.html', themes=pack[0].get('themes'), players=players)
 
 
 @app.route('/q', methods=['GET'])
 def show_question():
     question_id = request.args.get('id').replace('/', '')
     question = get_question_by_id(pack=pack, question_id=question_id)
-    return render_template('question.html', question=question)
+    return render_template('question.html', question=question, players=players)
 
 
 @app.route('/q', methods=['POST'])
 def show_question2():
-    a = request
     question_id = request.form.get('id').replace('/', '')
     question = get_question_by_id(pack=pack, question_id=question_id)
-    return render_template('question.html', question=question, ft_result=ft_result, st_result=st_result)
+    return render_template('question.html', question=question, players=players)
 
 
 if __name__ == '__main__':

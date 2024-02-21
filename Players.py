@@ -1,9 +1,9 @@
 import random
 
 
-class Team:
+class Players:
     def __init__(self, name):
-        self.id = random.randint(0, 1000000)
+        self.id = "player" + str(random.randint(0, 1000000))
         self.name = name
         self.score = 0
 

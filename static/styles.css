@@ -28,7 +28,7 @@ table {
 }
 .rate_button{
   width: 100%;
-  height: 204px;
+  height: 180px;
   background-color:#131697;
   color: #F5DE92;
   font-size: xxx-large;
@@ -39,15 +39,15 @@ table {
   background-color: #FDEB00;
   color: black;
 }
-
+tr {
+height: 180px;
+}
 
 td {
 border-style: solid;
 border-width: thin;
 }
-tr {
-height: 204px;
-}
+
 .question_block{
         color: #F5DE92;
         font-size: 60pt;
@@ -55,6 +55,7 @@ height: 204px;
         vertical-align: middle;
         text-align: center;
         padding: 10px 20px 10px 20px;
+        height:800px;
       }
 
 .hidden-button {
@@ -142,4 +143,14 @@ color: red;
 .right-color{
 color: #F5DE92;
 }
-
+.players-score{
+font-size: 45pt;
+text-align: center;
+margin-top:5px;
+color: #F5DE92;
+}
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    }
