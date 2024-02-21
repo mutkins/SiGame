@@ -33,3 +33,10 @@ def add_score(players, player_id, score):
         if player.id == player_id:
             player.score += score
     return players
+
+
+def configure_players(players):
+    for player in players:
+        if len(player.name) > 12:
+            player.name = player.name[:12]+'...'
+    return players

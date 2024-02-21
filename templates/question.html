@@ -66,26 +66,26 @@ document.getElementById("myForm").appendChild(node)
 <form method="post" action="/" id="myForm">
     <input type="hidden" name="id" value={{ question.id }}/>
 </form>
-<div class="button-block left-block">
+<div class="player-block left-block">
   <p class="team-name">{{ players[0].name }}</p>
-      <p id="first_team_wrong" class="question_result wrong-color">-{{ question.rate }}</p>
-      <p id="first_team_right" class="question_result right-color">+{{ question.rate }}</p>
+      <p id="first_team_wrong" class="question_result players-score wrong-color">-{{ question.rate }}</p>
+      <p id="first_team_right" class="question_result players-score right-color">+{{ question.rate }}</p>
   <div class="buttons-wrapper">
       <button id="first_team_minus" type ="button" class="plus-minus-button" onclick="wrong_answer(1)">-{{ question.rate }} </button><button id="first_team_plus" type ="button" onclick="right_answer(1)" class="plus-minus-button">+{{ question.rate }}</button>
     </div>
 </div>
 
-<div class="button-block center-block">
-  <p class="team-name"></p>
+<div class="center-block">
+
 
    <div class="buttons-wrapper"><input type="hidden" name="id" value={{ question.id }}/><button type ="submit" form="myForm" class="next-button">▶</button></div>
 
 </div>
 
-<div class="button-block right-block">
+<div class="player-block right-block">
   <p class="team-name">{{ players[1].name }}</p>
-      <p id="second_team_wrong" class="question_result wrong-color">-{{ question.rate }}</p>
-      <p id="second_team_right" class="question_result right-color">+{{ question.rate }}</p>
+      <p id="second_team_wrong" class="question_result players-score wrong-color">-{{ question.rate }}</p>
+      <p id="second_team_right" class="question_result players-score right-color">+{{ question.rate }}</p>
     <div class="buttons-wrapper">
       <button type ="button" id="second_team_minus" onclick="wrong_answer(2)" class="plus-minus-button">-{{ question.rate }}</button><button id="second_team_plus" onclick="right_answer(2)" type ="button" class="plus-minus-button">+{{ question.rate }}</button>
     </div>
@@ -97,7 +97,10 @@ document.getElementById("myForm").appendChild(node)
       {% if question.type == "text" %}
     <p>{{ question.name }}</p>
       {% elif question.type == "img" %}
-      <img src="{{ question.img_url }}">
+      <img src="{{ question.media_path }}">
+      {% elif question.type == "audio" %}
+      <audio src="{{ question.media_path }}", autoplay="autoplay"></audio>
+      <p class="treble-clef">𝄞</p>
       {% endif %}
   </div>
 

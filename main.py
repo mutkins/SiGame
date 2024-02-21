@@ -1,5 +1,5 @@
 import json
-from tools import get_question_by_id, configure_questions, mark_question_as_answered, add_score
+from tools import get_question_by_id, configure_questions, mark_question_as_answered, add_score, configure_players
 from flask import Flask, render_template, request
 from Players import Players
 
@@ -15,7 +15,8 @@ player_1 = Players('ЗУБОЗАВРЫ')
 player_2 = Players('ЗАТОЧЕННЫЕ ЗАБРОЗУБЫ')
 players = [player_1, player_2]
 
-
+players = configure_players(players)
+print()
 @app.route('/', methods=['GET'])
 def round_menu():
     global players
