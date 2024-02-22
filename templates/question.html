@@ -6,92 +6,51 @@
     <title>Table template</title>
     <link href="/static/styles.css" rel="stylesheet" type="text/css">
     <script>
-      function wrong_answer(a) {
+ function answer(player_id, score) {
+	document.getElementById(player_id +"_minus").style.display = "none";
+	document.getElementById(player_id +"_plus").style.display = "none";
+	document.getElementById(player_id).style.display = "block";
+	document.getElementById(player_id).innerHTML = score;
+	if (Number(score)<0){
+		document.getElementById(player_id).style.color = "red";
+	}
 
-if (a==1){
-document.getElementById("first_team_minus").style.display = "none";
-document.getElementById("first_team_plus").style.display = "none";
-document.getElementById("first_team_wrong").style.display = "block";
-
-const node = Object.assign(document.createElement('input'), {
-  type: "hidden",
-  name: "{{ players[0].id }}",
-  value: "-{{ question.rate }}"
-});
-document.getElementById("myForm").appendChild(node)
-
-}
-else {
-document.getElementById("second_team_minus").style.display = "none";
-document.getElementById("second_team_plus").style.display = "none";
-document.getElementById("second_team_wrong").style.display = "block";
-const node = Object.assign(document.createElement('input'), {
-  type: "hidden",
-  name: "{{ players[1].id }}",
-  value: "-{{ question.rate }}"
-});
-document.getElementById("myForm").appendChild(node)
-}
-}
-
-function right_answer(a) {
-
-if (a==1){
-document.getElementById("first_team_minus").style.display = "none";
-document.getElementById("first_team_plus").style.display = "none";
-document.getElementById("first_team_right").style.display = "block";
-const node = Object.assign(document.createElement('input'), {
-  type: "hidden",
-  name: "{{ players[0].id }}",
-  value: "+{{ question.rate }}"
-});
-document.getElementById("myForm").appendChild(node)
-}
-else {
-document.getElementById("second_team_minus").style.display = "none";
-document.getElementById("second_team_plus").style.display = "none";
-document.getElementById("second_team_right").style.display = "block";
-const node = Object.assign(document.createElement('input'), {
-  type: "hidden",
-  name: "{{ players[1].id }}",
-  value: "+{{ question.rate }}"
-});
-document.getElementById("myForm").appendChild(node)
-}
-
-}
+	const node = Object.assign(document.createElement('input'), {
+		type: "hidden",
+		name: player_id,
+		value: score
+	});
+	document.getElementById("myForm").appendChild(node)
+    }
     </script>
   </head>
   <body>
 <form method="post" action="/" id="myForm">
     <input type="hidden" name="id" value={{ question.id }}/>
 </form>
+
+
 <div class="player-block left-block">
   <p class="team-name">{{ players[0].name }}</p>
-      <p id="first_team_wrong" class="question_result players-score wrong-color">-{{ question.rate }}</p>
-      <p id="first_team_right" class="question_result players-score right-color">+{{ question.rate }}</p>
+    <p id = "{{ players[0].id }}" class="players-score question_result"></p>
   <div class="buttons-wrapper">
-      <button id="first_team_minus" type ="button" class="plus-minus-button" onclick="wrong_answer(1)">-{{ question.rate }} </button><button id="first_team_plus" type ="button" onclick="right_answer(1)" class="plus-minus-button">+{{ question.rate }}</button>
+      <button id="{{ players[0].id }}_minus" type ="button" class="plus-minus-button" onclick="answer('{{ players[0].id }}','-{{ question.rate }}')">-{{ question.rate }} </button><button id="{{ players[0].id }}_plus" type ="button" onclick="answer('{{ players[0].id }}','+{{ question.rate }}')" class="plus-minus-button">+{{ question.rate }}</button>
     </div>
 </div>
 
+
 <div class="center-block">
-
-
-   <div class="buttons-wrapper"><input type="hidden" name="id" value={{ question.id }}/><button type ="submit" form="myForm" class="next-button">▶</button></div>
-
+   <div class="buttons-wrapper"><button type ="submit" form="myForm" class="next-button">🡆</button></div>
 </div>
+
 
 <div class="player-block right-block">
   <p class="team-name">{{ players[1].name }}</p>
-      <p id="second_team_wrong" class="question_result players-score wrong-color">-{{ question.rate }}</p>
-      <p id="second_team_right" class="question_result players-score right-color">+{{ question.rate }}</p>
+      <p id = "{{ players[1].id }}" class="players-score question_result"></p>
     <div class="buttons-wrapper">
-      <button type ="button" id="second_team_minus" onclick="wrong_answer(2)" class="plus-minus-button">-{{ question.rate }}</button><button id="second_team_plus" onclick="right_answer(2)" type ="button" class="plus-minus-button">+{{ question.rate }}</button>
+      <button type ="button" id="{{ players[1].id }}_minus" onclick="answer('{{ players[1].id }}','-{{ question.rate }}')" class="plus-minus-button">-{{ question.rate }}</button><button id="{{ players[1].id }}_plus" onclick="answer('{{ players[1].id }}','+{{ question.rate }}')" type ="button" class="plus-minus-button">+{{ question.rate }}</button>
     </div>
 </div>
-
-
 
   <div class="question_block">
       {% if question.type == "text" %}
@@ -99,13 +58,11 @@ document.getElementById("myForm").appendChild(node)
       {% elif question.type == "img" %}
       <img src="{{ question.media_path }}">
       {% elif question.type == "audio" %}
-      <audio src="{{ question.media_path }}", autoplay="autoplay"></audio>
+      <audio controls src="{{ question.media_path[0] }}", autoplay="autoplay"></audio>
+    <audio controls src="{{ question.media_path[1] }}"></audio>
       <p class="treble-clef">𝄞</p>
       {% endif %}
   </div>
-
-
-
 
   </body>
 </html>
