@@ -20,7 +20,7 @@ print()
 @app.route('/', methods=['GET'])
 def round_menu():
     global players
-    return render_template('regular_round.html', themes=pack[0].get('themes'), players=players)
+    return render_template('regular_round.html', pack=pack, players=players)
 
 
 @app.route('/', methods=['POST'])
@@ -34,7 +34,7 @@ def round_menu1():
             score = request.form.get(item).replace('/', '')
             players = add_score(players=players, player_id=item, score=score)
     pack = mark_question_as_answered(pack=pack, question_id=question_id)
-    return render_template('regular_round.html', themes=pack[0].get('themes'), players=players)
+    return render_template('regular_round.html', pack=pack, players=players)
 
 
 @app.route('/q', methods=['GET'])

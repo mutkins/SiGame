@@ -15,6 +15,7 @@ def configure_questions(pack):
             for question in theme.get("questions"):
                 question["id"] = "question" + str(random.randint(0, 1000000))
                 question["answered"] = False
+        round["answered"] = False
     return pack
 
 
@@ -24,7 +25,18 @@ def mark_question_as_answered(pack, question_id):
             for question in theme.get("questions"):
                 if question.get("id") == question_id:
                     question["answered"] = True
+                    pack = mark_round_as_answered(pack=pack)
                     return pack
+
+
+def mark_round_as_answered(pack):
+    for round in pack:
+        for theme in round.get("themes"):
+            for question in theme.get("questions"):
+                if not question["answered"]:
+                    return pack
+        round["answered"] = True
+    return pack
 
 
 def add_score(players, player_id, score):

@@ -7,26 +7,28 @@
     <link href="/static/styles.css" rel="stylesheet" type="text/css">
 
 
-
   </head>
   <body>
     <table>
         <colgroup>
             <col class="first-col"/>
         </colgroup>
-        {% for theme in themes %}
-            <tr>
-                <td>{{ theme.name }}</td>
-                {% for question in theme.questions %}
-                <td><form method="get" action="/q">
-                    {% if question.answered == False %}
-                    <input type="hidden" name="id" value={{ question.id }}/>
-                    <button class="rate_button">{{ question.rate }}</button></form></td>
-                    {% endif %}
-                 {% endfor %}
-            </tr>
+        {% for round in pack if round.answered == False %}
+            {% if loop.first %}
+                {% for theme in round.themes %}
+                    <tr>
+                    <td>{{ theme.name }}</td>
+                    {% for question in theme.questions %}
+                        <td><form method="get" action="/q">
+                        {% if question.answered == False %}
+                            <input type="hidden" name="id" value={{ question.id }}/>
+                            <button class="rate_button">{{ question.rate }}</button></form></td>
+                        {% endif %}
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            {% endif %}
         {% endfor %}
-
     </table>
 
   <div class="player-block left-block">
