@@ -89,6 +89,7 @@ background: transparent;
   left: 20px;
 
 }
+
 .center-block {
 position: fixed;
   height:100px;
@@ -99,6 +100,16 @@ position: fixed;
   left: calc(50% - 50px);
 
 }
+.center-block-intuition {
+  position: fixed;
+  width: 220px;
+  height:122px;
+  bottom: 20px;
+  font-size: 17pt;
+  box-sizing: border-box;
+  left: calc(50% - 100px);
+}
+
 .next-button {
 display: inline;
   width: 100%;

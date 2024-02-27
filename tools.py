@@ -25,9 +25,16 @@ def mark_question_as_answered(pack, question_id):
             for question in theme.get("questions"):
                 if question.get("id") == question_id:
                     question["answered"] = True
-                    round["state"] = "in_progress"
+
                     pack = mark_round_as_finished(pack=pack)
                     return pack
+
+
+def mark_round_as_started(pack, round_num):
+    for round in pack:
+        if round.get("round_num") == int(round_num):
+            round["state"] = "in_progress"
+    return pack
 
 
 def mark_round_as_finished(pack):
@@ -40,16 +47,15 @@ def mark_round_as_finished(pack):
     return pack
 
 
-def is_need_to_show_welcome(pack):
+def get_current_round_table(pack):
     for round in pack:
         if round["state"] is None:
-            print()
-            return round
-        if round["state"] is None and pack[pack.index(round)-1]["state"] == "finished":
-            print()
-            return round
-
-
+            return {"type": "themes_list", "round": round}
+        elif round["state"] == "in_progress":
+            return {"type": "regular", "round": round}
+        else:
+            continue
+    return None
 
 
 def add_score(players, player_id, score):

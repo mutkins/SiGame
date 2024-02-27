@@ -9,12 +9,22 @@
 
   </head>
   <body>
-<form method="get" action="/" id="myForm">
+<form method="post" action="/start_round" id="myForm">
+  <input type="hidden" name="round_num" value={{ round.round_num }}/>
 </form>
 <div class="center-block">
    <div class="buttons-wrapper"><button type ="submit" form="myForm" class="next-button">🡆</button></div>
 </div>
-  <p></p>
 
+      <table>
+        <colgroup>
+            <col class="first-col"/>
+        </colgroup>
+                {% for theme in round.themes %}
+                    <tr>
+                    <td>{{ theme.name }}</td>
+                    </tr>
+                {% endfor %}
+    </table>
   </body>
 </html>
