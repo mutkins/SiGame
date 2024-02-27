@@ -58,6 +58,17 @@ def get_current_round_table(pack):
     return None
 
 
+def get_current_round_num(pack):
+    for round in pack:
+        if round["state"] is None:
+            return round.get("round_num")
+        elif round["state"] == "in_progress":
+            return round.get("round_num")
+        else:
+            continue
+    return None
+
+
 def add_score(players, player_id, score):
     score = int(score)
     for player in players:
@@ -71,3 +82,19 @@ def configure_players(players):
         if len(player.name) > 12:
             player.name = player.name[:12] + '...'
     return players
+
+
+def get_round_by_num(pack, round_num):
+    for round in pack:
+        if round.get("round_num") == int(round_num):
+            return round
+    return None
+
+
+def is_there_questions_in_round(pack, round_num):
+    round = get_round_by_num(pack=pack, round_num=round_num)
+    for theme in round.get("themes"):
+        for question in theme.get("questions"):
+            if not question["answered"]:
+                return True
+    return False
