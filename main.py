@@ -1,5 +1,5 @@
 import json
-from tools import get_question_by_id, configure_questions, mark_question_as_answered, add_score, configure_players
+from tools import get_question_by_id, configure_questions, mark_question_as_answered, add_score, configure_players, is_need_to_show_welcome
 from flask import Flask, render_template, request
 from Players import Players
 
@@ -16,10 +16,12 @@ player_2 = Players('ЗАТОЧЕННЫЕ ЗАБРОЗУБЫ')
 players = [player_1, player_2]
 
 players = configure_players(players)
-print()
+
+
 @app.route('/', methods=['GET'])
-def round_menu():
-    global players
+def render_round_table():
+    round = is_need_to_show_welcome(pack=pack)
+    print()
     return render_template('regular_round.html', pack=pack, players=players)
 
 
@@ -34,7 +36,9 @@ def round_menu1():
             score = request.form.get(item).replace('/', '')
             players = add_score(players=players, player_id=item, score=score)
     pack = mark_question_as_answered(pack=pack, question_id=question_id)
-    return render_template('regular_round.html', pack=pack, players=players)
+    return render_round_table()
+    # return render_template('regular_round.html', pack=pack, players=players)
+    # return render_template('welcome_round.html', pack=pack, players=players)
 
 
 @app.route('/q', methods=['GET'])

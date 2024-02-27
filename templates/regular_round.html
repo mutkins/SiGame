@@ -13,7 +13,7 @@
         <colgroup>
             <col class="first-col"/>
         </colgroup>
-        {% for round in pack if round.answered == False %}
+        {% for round in pack if round.state != 'finished' %}
             {% if loop.first %}
                 {% for theme in round.themes %}
                     <tr>

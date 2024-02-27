@@ -3,10 +3,10 @@ import random
 
 def get_question_by_id(pack, question_id):
     for round in pack:
-            for theme in round.get("themes"):
-                    for question in theme.get("questions"):
-                        if question.get("id") == question_id:
-                            return question
+        for theme in round.get("themes"):
+            for question in theme.get("questions"):
+                if question.get("id") == question_id:
+                    return question
 
 
 def configure_questions(pack):
@@ -15,7 +15,7 @@ def configure_questions(pack):
             for question in theme.get("questions"):
                 question["id"] = "question" + str(random.randint(0, 1000000))
                 question["answered"] = False
-        round["answered"] = False
+        round["state"] = None
     return pack
 
 
@@ -25,18 +25,31 @@ def mark_question_as_answered(pack, question_id):
             for question in theme.get("questions"):
                 if question.get("id") == question_id:
                     question["answered"] = True
-                    pack = mark_round_as_answered(pack=pack)
+                    round["state"] = "in_progress"
+                    pack = mark_round_as_finished(pack=pack)
                     return pack
 
 
-def mark_round_as_answered(pack):
+def mark_round_as_finished(pack):
     for round in pack:
         for theme in round.get("themes"):
             for question in theme.get("questions"):
                 if not question["answered"]:
                     return pack
-        round["answered"] = True
+        round["state"] = "finished"
     return pack
+
+
+def is_need_to_show_welcome(pack):
+    for round in pack:
+        if round["state"] is None:
+            print()
+            return round
+        if round["state"] is None and pack[pack.index(round)-1]["state"] == "finished":
+            print()
+            return round
+
+
 
 
 def add_score(players, player_id, score):
@@ -50,5 +63,5 @@ def add_score(players, player_id, score):
 def configure_players(players):
     for player in players:
         if len(player.name) > 12:
-            player.name = player.name[:12]+'...'
+            player.name = player.name[:12] + '...'
     return players
