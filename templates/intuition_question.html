@@ -31,11 +31,13 @@
     </script>
   </head>
   <body>
-<form method="post" action="/" id="rightForm">
-    <input type="hidden" name="id" value={{ question.id }}/>
+<form method="post" action="/round_table" id="rightForm">
+    <input type="hidden" name="question_id" value={{ question.id }}/>
+    <input type="hidden" name="round_num" value={{ round_num }}/>
 </form>
 
-<form method="post" action="/" id="wrongForm">
+<form method="post" action="/round_table" id="wrongForm">
+    <input type="hidden" name="round_num" value={{ round_num }}/>
 </form>
 
 <div class="player-block left-block">

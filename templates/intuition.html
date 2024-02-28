@@ -16,9 +16,10 @@
                 {% for theme in round.themes %}
                     <tr>
                     {% for question in theme.questions %}
-                        <td><form method="get" action="/q">
+                        <td><form method="get" action="/question">
                         {% if question.answered == False %}
-                            <input type="hidden" name="id" value={{ question.id }}/>
+                            <input type="hidden" name="question_id" value={{ question.id }}/>
+                            <input type="hidden" name="round_num" value={{ round.round_num }}/>
                             <button class="rate_button">{{ theme.name }}</button></form></td>
                         {% endif %}
                     {% endfor %}

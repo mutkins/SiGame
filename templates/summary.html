@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/static/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1 class="summary-text">ИТОГИ</h1>
+  <div class="player-block left-block">
+  <p class="team-name">{{ players[0].name }}</p>
+  <p id = "{{ players[0].id }}" class="players-score">{{ players[0].score }}</p>
+</div>
+  <div class="player-block right-block">
+  <p  class="team-name">{{ players[1].name }}</p>
+  <p id = "{{ players[1].id }}" class="players-score">{{ players[1].score }}</p>
+</div>
+
+  </body>
+      <script>
+        {% for player in players %}
+        {% if player.score < 0 %}
+        document.getElementById("{{ player.id }}").style.color = "red";
+        {% endif %}
+        {% endfor %}
+      </script>
+</html>

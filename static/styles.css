@@ -177,3 +177,8 @@ img {
 .treble-clef{
 font-size: 200px;
 }
+.summary-text {
+        display:table-cell;
+        vertical-align: middle;
+        text-align: center;
+        }
