@@ -178,7 +178,27 @@ img {
 font-size: 200px;
 }
 .summary-text {
+        font-size: 150pt;
         display:table-cell;
         vertical-align: middle;
         text-align: center;
+        -webkit-transform: translate(0, 0);
+        -webkit-transition: -webkit-transform 1000ms;
+        transform: translate(0, 0);
+        transition: transform 1000ms;
         }
+.player-name-input {
+font-size: 50pt;
+text-align: center;
+}
+
+.game-title{
+font-size: 150pt;
+text-align: center;
+margin-top: 15%;
+color: #F5DE92;
+}
+.player-names-div {
+    text-align: center;
+    margin-top: 5%;
+}
