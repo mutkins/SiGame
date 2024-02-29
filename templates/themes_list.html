@@ -10,12 +10,11 @@
   </head>
 
   <body>
+  <audio src="/static/audio/system/si_categories.mp3" autoplay="autoplay"></audio>
 <form method="get" action="/start_round" id="myForm">
   <input type="hidden" name="round_num" value={{ round.round_num }}/>
 </form>
-<div class="center-block">
-   <div class="buttons-wrapper"><button type ="submit" form="myForm" class="next-button">🡆</button></div>
-</div>
+
 <h1 id="myId" class="summary-text">Раунд {{ round.round_num }}</h1>
 
                 {% for theme in round.themes %}
@@ -28,6 +27,9 @@
                     </tr>
                 {% endfor %}
     </table>
+  <div class="center-block">
+   <div class="buttons-wrapper"><button type ="submit" form="myForm" class="next-button">🡆</button></div>
+</div>
   </body>
   <script>
 <!--  Этот совершенно непонятный мне код делает так, что каждые 1.5 секунды inner текст в элементе "myID" меняется на новый-->
@@ -42,8 +44,9 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 <!--  Когда непонятный код закончился, этот элемент убираем, а табличку с темами наоборот, показываем-->
   document.getElementById("myId").style.display = 'none';
   document.getElementsByTagName("table")[0].style.display = '';
+  <!--И останавливаем музыку-->
+document.getElementsByTagName("audio")[0].src = '';
 })();
-
 
   </script>
 

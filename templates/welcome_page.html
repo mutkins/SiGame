@@ -6,11 +6,11 @@
     <link href="/static/styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form method="get" action="/themes" id="myForm">
-  <input type="hidden" name="round_num" value=1/>
+<form method="post" action="/game_init" id="myForm">
+<!--  <input type="hidden" name="round_num" value=1/>-->
     <div class="game-title">СВОЯ ИГРА</div>
     <div class="player-names-div">
-  <input type="text" class="player-name-input" size="12" placeholder="Команда 1"/> <input type="text" class="player-name-input" size="12" placeholder="Команда 2"/>
+  <input type="text" name="player_name_1" class="player-name-input" size="12" placeholder="Команда 1"/> <input type="text" name="player_name_2" class="player-name-input" size="12" placeholder="Команда 2"/>
     </div>
 </form>
 <div class="center-block">

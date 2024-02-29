@@ -9,6 +9,12 @@
 
   </head>
   <body>
+    <form method="get" action="/prev_round" id="prev_round">
+    <input type="hidden" name="round_num" value={{ round.round_num }}/>
+</form>
+    <form method="get" action="/next_round" id="next_round">
+    <input type="hidden" name="round_num" value={{ round.round_num }}/>
+</form>
     <table>
         <colgroup>
             <col class="first-col"/>
@@ -30,6 +36,11 @@
   <div class="player-block left-block">
   <p class="team-name">{{ players[0].name }}</p>
   <p id = "{{ players[0].id }}" class="players-score">{{ players[0].score }}</p>
+</div>
+        <div class="center-block-intuition">
+  <div class="buttons-wrapper">
+          <button type ="submit" class="plus-minus-button" form="prev_round">🡄</button><button type ="submit" class="plus-minus-button" form="next_round">🡆</button>
+    </div>
 </div>
   <div class="player-block right-block">
   <p  class="team-name">{{ players[1].name }}</p>

@@ -22,6 +22,11 @@
 	});
 	document.getElementById("myForm").appendChild(node)
     }
+
+ function play_no_answer_sound(){
+  var audio = new Audio('/static/audio/system/si_noanswer.mp3');
+  audio.play();
+}
     </script>
   </head>
   <body>
@@ -40,8 +45,14 @@
 </div>
 
 
-<div class="center-block">
-   <div class="buttons-wrapper"><button type ="submit" form="myForm" class="next-button">🡆</button></div>
+<!--<div class="center-block">-->
+<!--   <div class="buttons-wrapper"><button type ="submit" form="myForm" class="next-button">🡆</button></div>-->
+<!--</div>-->
+
+<div class="center-block-intuition">
+  <div class="buttons-wrapper">
+      <button type ="button" onclick="play_no_answer_sound()" class="plus-minus-button">⏳</button><button type ="submit" class="plus-minus-button" form="myForm">🡆</button>
+    </div>
 </div>
 
 

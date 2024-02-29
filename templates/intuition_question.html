@@ -50,7 +50,7 @@
 
 <div class="center-block-intuition">
   <div class="buttons-wrapper">
-      <button type ="submit" form="rightForm" class="plus-minus-button">✓</button><button type ="submit" class="plus-minus-button" form="wrongForm">×</button>
+      <button type ="submit" form="wrongForm" class="plus-minus-button">👎</button><button type ="submit" class="plus-minus-button" form="rightForm">👍</button>
     </div>
 </div>
 
@@ -65,6 +65,8 @@
   <div class="question_block">
       {% if question.type == "text" %}
     <p>{{ question.name }}</p>
+      {% elif question.type == "intuition" %}
+      <p>{{ question.name }}</p>
       {% elif question.type == "img" %}
       <img src="{{ question.media_path }}">
       {% elif question.type == "audio" %}
