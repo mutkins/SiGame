@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
+      <link rel="icon" href="data:;base64,=">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Table template</title>
@@ -63,21 +64,22 @@
       <button type ="button" id="{{ players[1].id }}_minus" onclick="answer('{{ players[1].id }}','-{{ question.rate }}')" class="plus-minus-button">-{{ question.rate }}</button><button id="{{ players[1].id }}_plus" onclick="answer('{{ players[1].id }}','+{{ question.rate }}')" type ="button" class="plus-minus-button">+{{ question.rate }}</button>
     </div>
 </div>
-
   <div class="question_block">
       {% if question.type == "text" %}
     <p>{{ question.name }}</p>
       {% elif question.type == "img" %}
-      <img src="{{ question.media_path }}">
+      <img class="question-media" src="{{ question.media_path }}">
       {% elif question.type == "audio" %}
       <audio controls src="", autoplay="autoplay"></audio>
     <audio controls src="{{ question.media_path[1] }}"></audio>
       <p class="treble-clef">𝄞</p>
       {% elif question.type == "video" %}
-      <video src="{{ question.media_path[0] }}", controls="controls" ></video><br>
-     <audio controls src="{{ question.media_path[1] }}"></audio>
+      <audio controls preload="auto" src="{{ question.media_path[1] }}"></audio><br>
+      <video height="500" class="question-media"  src="{{ question.media_path[0] }}", controls="controls" autoplay="autoplay"></video>
+
       {% endif %}
   </div>
+
 
   </body>
 </html>

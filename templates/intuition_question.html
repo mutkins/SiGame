@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
+      <link rel="icon" href="data:;base64,=">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Table template</title>
@@ -44,7 +45,7 @@
   <p class="team-name">{{ players[0].name }}</p>
     <p id = "{{ players[0].id }}" class="players-score question_result"></p>
   <div class="buttons-wrapper">
-      <button id="{{ players[0].id }}_minus" type ="button" class="plus-minus-button" onclick="answer('{{ players[0].id }}','-{{ question.rate }}')">-{{ question.rate }} </button><button id="{{ players[0].id }}_plus" type ="button" onclick="answer('{{ players[0].id }}','+{{ question.rate }}')" class="plus-minus-button">+{{ question.rate }}</button>
+      <button id="{{ players[0].id }}_minus" type ="button" class="plus-minus-button" onclick="answer('{{ players[0].id }}','-{{ question.rate//2 }}')">-{{ question.rate//2 }} </button><button id="{{ players[0].id }}_plus" type ="button" onclick="answer('{{ players[0].id }}','+{{ question.rate }}')" class="plus-minus-button">+{{ question.rate }}</button>
     </div>
 </div>
 
@@ -58,7 +59,7 @@
   <p class="team-name">{{ players[1].name }}</p>
       <p id = "{{ players[1].id }}" class="players-score question_result"></p>
     <div class="buttons-wrapper">
-      <button type ="button" id="{{ players[1].id }}_minus" onclick="answer('{{ players[1].id }}','-{{ question.rate }}')" class="plus-minus-button">-{{ question.rate }}</button><button id="{{ players[1].id }}_plus" onclick="answer('{{ players[1].id }}','+{{ question.rate }}')" type ="button" class="plus-minus-button">+{{ question.rate }}</button>
+      <button type ="button" id="{{ players[1].id }}_minus" onclick="answer('{{ players[1].id }}','-{{ question.rate//2 }}')" class="plus-minus-button">-{{ question.rate//2 }}</button><button id="{{ players[1].id }}_plus" onclick="answer('{{ players[1].id }}','+{{ question.rate }}')" type ="button" class="plus-minus-button">+{{ question.rate }}</button>
     </div>
 </div>
 

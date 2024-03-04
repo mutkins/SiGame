@@ -5,12 +5,9 @@ from Players import Players
 
 app = Flask(__name__)
 
-global pack
-with open('pack.json', 'r', encoding='utf-8') as file:
-    pack = json.load(file)
-
-pack = configure_questions(pack)
+pack = None
 players = []
+
 
 @app.route('/', methods=['GET'])
 def render_welcome_page():
@@ -19,8 +16,11 @@ def render_welcome_page():
 
 @app.route('/game_init', methods=['POST'])
 def game_init():
+    global pack
+    with open('pack.json', 'r', encoding='utf-8') as file:
+        pack = json.load(file)
+    pack = configure_questions(pack)
     global players
-    a = request.form
     for item in request.form:
         if item.startswith('player_name'):
             player_name = request.form.get(item).replace('/', '')
@@ -124,4 +124,4 @@ def render_summary():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=80)
